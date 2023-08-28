@@ -1,0 +1,15 @@
+{
+	"texture": "celestial:sky/the_edge/objects/sun.png",
+	"display": {
+		"scale": "50",
+		"pos_x": "0",
+		"pos_y": "0",
+		"pos_z": "0",
+		"distance": "100"
+	},
+	"rotation": {
+		"degrees_x": "#skyAngle + 90",
+		"degrees_y": "0",
+		"degrees_z": "0"
+	}
+}

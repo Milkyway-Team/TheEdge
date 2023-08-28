@@ -1,0 +1,26 @@
+{
+  "sky_objects": [
+    "broken_planet",
+    "star_blue_1",
+    "star_pink_1",
+    "star_pink_2"
+  ],
+  "render_type": "normal",
+  "environment": {
+    "fog_color": "00141b",
+    "sky_color": "00141b",
+    "twilight_color": "00141b",
+    "twilight_alpha": "0",
+    "void_culling_level": "-64",
+    "clouds": {
+      "height": 128,
+      "color": "00141b"
+    },
+    "fog": {
+      "has_thick_fog": false,
+      "fog_start": -1,
+      "fog_end": -1
+    },
+    "sky_darkness": "1"
+  }
+}

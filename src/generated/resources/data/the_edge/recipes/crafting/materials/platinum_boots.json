@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " k ",
+    "php",
+    "sks"
+  ],
+  "key": {
+    "p": {
+      "tag": "forge:ingots/platinum"
+    },
+    "h": {
+      "item": "create:netherite_diving_boots"
+    },
+    "s": {
+      "tag": "forge:plates/platinum"
+    },
+    "k": {
+      "item": "minecraft:dried_kelp"
+    }
+  },
+  "result": {
+    "item": "the_edge:platinum_boots"
+  }
+}

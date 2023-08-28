@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "the_edge:edgestone",
+    "the_edge:edgeslate",
+    "the_edge:starfilled_edgestone",
+    "the_edge:glitched_nylium",
+    "the_edge:platinum_backtank",
+    "the_edge:deepslate_platinum_ore",
+    "the_edge:glacionite_ore",
+    "the_edge:edgeslate_glacionite_ore",
+    "the_edge:edgeslate_ancient_bismuth_ore"
+  ]
+}
