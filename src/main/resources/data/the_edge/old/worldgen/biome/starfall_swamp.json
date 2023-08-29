@@ -1,0 +1,50 @@
+{
+  "temperature": 0.8,
+  "downfall": 0.9,
+  "precipitation": "none",
+  "category": "swamp",
+  "effects": {
+    "sky_color": 1911390,
+    "fog_color": 1911390,
+    "water_color": 5236943,
+    "water_fog_color": 4429962,
+    "foliage_color": 4305993,
+    "grass_color_modifier": "none",
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
+  "features": [
+    [],
+    [],
+    [
+      "minecraft:fossil_upper",
+      "minecraft:fossil_lower"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:spring_water"
+    ],
+    [
+      "minecraft:patch_grass_normal"
+    ],
+    [
+      "minecraft:freeze_top_layer"
+    ]
+  ]
+}

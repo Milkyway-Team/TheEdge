@@ -126,6 +126,9 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 
+    //Celestial
+    //implementation fg.deobf("curse.maven:celestial-661111:4601978")
+
     // Sponge
     annotationProcessor "org.spongepowered:mixin:0.8.3:processor"
     testAnnotationProcessor "org.spongepowered:mixin:0.8.3:processor"

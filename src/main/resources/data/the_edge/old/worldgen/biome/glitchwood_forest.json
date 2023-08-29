@@ -1,0 +1,35 @@
+{
+  "temperature": 2,
+  "downfall": 0,
+  "precipitation": "none",
+  "category": "none",
+  "effects": {
+    "sky_color": 1513005,
+    "fog_color": 1513005,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color": 1764012,
+    "foliage_color": 1764012,
+    "music": {
+      "sound": "the_edge:edge_wanderer",
+      "min_delay": 0,
+      "max_delay": 0,
+      "replace_current_music": true
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "the_edge:starry_edgestone_pile",
+      "the_edge:starfall_lake",
+      "the_edge:starfall_lake_underground"
+    ]
+  ]
+}

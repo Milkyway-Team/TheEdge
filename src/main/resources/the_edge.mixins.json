@@ -4,8 +4,10 @@
   "package": "com.pouffydev.the_edge.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "LivingEntityGravityMixin",
+    "LivingEntityMixin"
   ],
   "client": [
-    "MixinDemo"
+    "SoundManagerMixin"
   ]
 }

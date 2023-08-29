@@ -1,0 +1,15 @@
+{
+
+  "the_edge.chompweed.trigger": {
+    "sounds": [
+      "environment/chomp0",
+      "environment/chomp1",
+      "environment/chomp2",
+      "environment/chomp3"
+    ]
+  },
+  "the_edge.music.bg": { "sounds": [
+    { "name": "the_edge:music/edge_wanderer", "stream": true, "volume": 0.5 },
+    { "name": "the_edge:music/bring_me_to_the_edge", "stream": true, "volume": 0.5 }
+  ] }
+}
