@@ -1,0 +1,11 @@
+
+
+
+{
+      "type": "minecraft:range_choice",
+    "input": "the_edge:dune/size_spline",
+    "min_inclusive": -1,
+    "max_exclusive": 1000000,
+    "when_in_range": "the_edge:dune/noise",
+    "when_out_of_range": -64
+    }
