@@ -1,0 +1,577 @@
+{
+  "type": "the_edge:the_edge",
+  "generator": {
+    "type": "minecraft:noise",
+    "seed": 1828315758,
+    "settings": {
+        "sea_level": -64,
+        "disable_mob_generation": false,
+        "aquifers_enabled": false,
+        "ore_veins_enabled": false,
+        "legacy_random_source": true,
+        "default_block": {
+          "Name": "the_edge:edgestone"
+        },
+        "default_fluid": {
+          "Name": "the_edge:starfall",
+          "Properties": {
+            "level": "0"
+          }
+        },
+        "noise": {
+          "min_y": 0,
+          "height": 256,
+          "size_horizontal": 2,
+          "size_vertical": 1,
+          "sampling": {
+            "xz_scale": 2,
+            "y_scale": 1,
+            "xz_factor": 80,
+            "y_factor": 160
+          },
+          "bottom_slide": {
+            "target": -0.234375,
+            "size": 7,
+            "offset": 1
+          },
+          "top_slide": {
+            "target": -23.4375,
+            "size": 64,
+            "offset": -46
+          },
+          "terrain_shaper": {
+            "offset": 0,
+            "factor": 0,
+            "jaggedness": 0
+          }
+        },
+        "noise_router": {
+          "barrier": 0,
+          "fluid_level_floodedness": 0,
+          "fluid_level_spread": 0,
+          "lava": 0,
+          "temperature": {
+            "type": "minecraft:shifted_noise",
+            "noise": "minecraft:temperature",
+            "xz_scale": 0.25,
+            "y_scale": 0,
+            "shift_x": "minecraft:shift_x",
+            "shift_y": 0,
+            "shift_z": "minecraft:shift_z"
+          },
+          "vegetation": {
+            "type": "minecraft:shifted_noise",
+            "noise": "minecraft:vegetation",
+            "xz_scale": 0.25,
+            "y_scale": 0,
+            "shift_x": "minecraft:shift_x",
+            "shift_y": 0,
+            "shift_z": "minecraft:shift_z"
+          },
+          "continents": "minecraft:overworld/continents",
+          "erosion": "minecraft:overworld/erosion",
+          "depth": "minecraft:overworld/depth",
+          "ridges": "minecraft:overworld/ridges",
+          "initial_density_without_jaggedness": {
+            "type": "minecraft:mul",
+            "argument1": 4,
+            "argument2": {
+              "type": "minecraft:quarter_negative",
+              "argument": {
+                "type": "minecraft:mul",
+                "argument1": "minecraft:overworld/depth",
+                "argument2": {
+                  "type": "minecraft:cache_2d",
+                  "argument": "minecraft:overworld/factor"
+                }
+              }
+            }
+          },
+          "final_density": {
+            "type": "minecraft:squeeze",
+            "argument": {
+              "type": "minecraft:mul",
+              "argument1": 0.64,
+              "argument2": {
+                "type": "minecraft:interpolated",
+                "argument": {
+                  "type": "minecraft:blend_density",
+                  "argument": {
+                    "type": "minecraft:slide",
+                    "argument": "minecraft:overworld/sloped_cheese"
+                  }
+                }
+              }
+            }
+          },
+          "vein_toggle": 0,
+          "vein_ridged": 0,
+          "vein_gap": 0
+        },
+      "surface_rule": {
+        "type": "minecraft:sequence",
+        "sequence": [
+          {
+            "type": "minecraft:sequence",
+            "sequence": [
+              {
+                "type": "minecraft:condition",
+                "if_true": {
+                  "type": "minecraft:stone_depth",
+                  "offset": 0,
+                  "surface_type": "floor",
+                  "add_surface_depth": false,
+                  "secondary_depth_range": 0
+                },
+                "then_run": {
+                  "type": "minecraft:sequence",
+                  "sequence": [
+                    {
+                      "type": "minecraft:condition",
+                      "if_true": {
+                        "type": "minecraft:biome",
+                        "biome_is": [
+                          "the_edge:glitchwood_forest"
+                        ]
+                      },
+                      "then_run": {
+                        "type": "minecraft:condition",
+                        "if_true": {
+                          "type": "minecraft:y_above",
+                          "anchor": {
+                            "absolute": 97
+                          },
+                          "surface_depth_multiplier": 2,
+                          "add_stone_depth": false
+                        },
+                        "then_run": {
+                          "type": "minecraft:sequence",
+                          "sequence": [
+                            {
+                              "type": "minecraft:condition",
+                              "if_true": {
+                                "type": "minecraft:noise_threshold",
+                                "noise": "minecraft:surface",
+                                "min_threshold": -0.909,
+                                "max_threshold": -0.5454
+                              },
+                              "then_run": {
+                                "type": "minecraft:block",
+                                "result_state": {
+                                  "Name": "the_edge:glitched_nylium"
+                                }
+                              }
+                            },
+                            {
+                              "type": "minecraft:condition",
+                              "if_true": {
+                                "type": "minecraft:noise_threshold",
+                                "noise": "minecraft:surface",
+                                "min_threshold": -0.1818,
+                                "max_threshold": 0.1818
+                              },
+                              "then_run": {
+                                "type": "minecraft:block",
+                                "result_state": {
+                                  "Name": "the_edge:glitched_nylium"
+                                }
+                              }
+                            },
+                            {
+                              "type": "minecraft:condition",
+                              "if_true": {
+                                "type": "minecraft:noise_threshold",
+                                "noise": "minecraft:surface",
+                                "min_threshold": 0.5454,
+                                "max_threshold": 0.909
+                              },
+                              "then_run": {
+                                "type": "minecraft:block",
+                                "result_state": {
+                                  "Name": "the_edge:glitched_nylium"
+                                }
+                              }
+                            },
+                            {
+                              "type": "minecraft:sequence",
+                              "sequence": [
+                                {
+                                  "type": "minecraft:condition",
+                                  "if_true": {
+                                    "type": "minecraft:water",
+                                    "offset": 0,
+                                    "surface_depth_multiplier": 0,
+                                    "add_stone_depth": false
+                                  },
+                                  "then_run": {
+                                    "type": "minecraft:block",
+                                    "result_state": {
+                                      "Name": "the_edge:glitched_nylium",
+                                      "Properties": {
+                                        "snowy": "false"
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "type": "minecraft:block",
+                                  "result_state": {
+                                    "Name": "the_edge:edgestone"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "type": "minecraft:condition",
+                      "if_true": {
+                        "type": "minecraft:biome",
+                        "biome_is": [
+                          "the_edge:frozen_wastes"
+                        ]
+                      },
+                      "then_run": {
+                        "type": "minecraft:condition",
+                        "if_true": {
+                          "type": "minecraft:y_above",
+                          "anchor": {
+                            "absolute": 97
+                          },
+                          "surface_depth_multiplier": 2,
+                          "add_stone_depth": false
+                        },
+                        "then_run": {
+                          "type": "minecraft:sequence",
+                          "sequence": [
+                            {
+                              "type": "minecraft:condition",
+                              "if_true": {
+                                "type": "minecraft:noise_threshold",
+                                "noise": "minecraft:surface",
+                                "min_threshold": -0.909,
+                                "max_threshold": -0.5454
+                              },
+                              "then_run": {
+                                "type": "minecraft:block",
+                                "result_state": {
+                                  "Name": "the_edge:frosted_nylium"
+                                }
+                              }
+                            },
+                            {
+                              "type": "minecraft:condition",
+                              "if_true": {
+                                "type": "minecraft:noise_threshold",
+                                "noise": "minecraft:surface",
+                                "min_threshold": -0.1818,
+                                "max_threshold": 0.1818
+                              },
+                              "then_run": {
+                                "type": "minecraft:block",
+                                "result_state": {
+                                  "Name": "the_edge:frosted_nylium"
+                                }
+                              }
+                            },
+                            {
+                              "type": "minecraft:condition",
+                              "if_true": {
+                                "type": "minecraft:noise_threshold",
+                                "noise": "minecraft:surface",
+                                "min_threshold": 0.5454,
+                                "max_threshold": 0.909
+                              },
+                              "then_run": {
+                                "type": "minecraft:block",
+                                "result_state": {
+                                  "Name": "the_edge:frosted_nylium"
+                                }
+                              }
+                            },
+                            {
+                              "type": "minecraft:sequence",
+                              "sequence": [
+                                {
+                                  "type": "minecraft:condition",
+                                  "if_true": {
+                                    "type": "minecraft:water",
+                                    "offset": 0,
+                                    "surface_depth_multiplier": 0,
+                                    "add_stone_depth": false
+                                  },
+                                  "then_run": {
+                                    "type": "minecraft:block",
+                                    "result_state": {
+                                      "Name": "the_edge:frosted_nylium",
+                                      "Properties": {
+                                        "snowy": "false"
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "type": "minecraft:block",
+                                  "result_state": {
+                                    "Name": "the_edge:edgestone"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "type": "minecraft:condition",
+                      "if_true": {
+                        "type": "minecraft:biome",
+                        "biome_is": [
+                          "the_edge:starfall_swamp"
+                        ]
+                      },
+                      "then_run": {
+                        "type": "minecraft:condition",
+                        "if_true": {
+                          "type": "minecraft:y_above",
+                          "anchor": {
+                            "absolute": 62
+                          },
+                          "surface_depth_multiplier": 0,
+                          "add_stone_depth": false
+                        },
+                        "then_run": {
+                          "type": "minecraft:condition",
+                          "if_true": {
+                            "type": "minecraft:not",
+                            "invert": {
+                              "type": "minecraft:y_above",
+                              "anchor": {
+                                "absolute": 63
+                              },
+                              "surface_depth_multiplier": 0,
+                              "add_stone_depth": false
+                            }
+                          },
+                          "then_run": {
+                            "type": "minecraft:condition",
+                            "if_true": {
+                              "type": "minecraft:noise_threshold",
+                              "noise": "minecraft:surface_swamp",
+                              "min_threshold": 0,
+                              "max_threshold": 1.7976931348623157e+308
+                            },
+                            "then_run": {
+                              "type": "minecraft:block",
+                              "result_state": {
+                                "Name": "the_edge:starfall",
+                                "Properties": {
+                                  "level": "0"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "minecraft:condition",
+            "if_true": {
+              "type": "minecraft:vertical_gradient",
+              "random_name": "the_edge:edgeslate",
+              "true_at_and_below": {
+                "absolute": 4
+              },
+              "false_at_and_above": {
+                "absolute": 8
+              }
+            },
+            "then_run": {
+              "type": "minecraft:block",
+              "result_state": {
+                "Name": "the_edge:edgeslate",
+                "Properties": {
+                  "axis": "y"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "the_edge:starfall_swamp",
+          "parameters": {
+            "temperature": [
+              -0.45,
+              1
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "continentalness": [
+              -0.11,
+              1
+            ],
+            "erosion": [
+              0.55,
+              1
+            ],
+            "weirdness": [
+              -1,
+              -0.9333
+            ],
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "the_edge:the_edge",
+          "parameters": {
+            "temperature": [
+              -0.45,
+              -0.15
+            ],
+            "humidity": [
+              -1,
+              -0.35
+            ],
+            "continentalness": [
+              -0.11,
+              0.3
+            ],
+            "erosion": [
+              -0.7799,
+              -0.375
+            ],
+            "weirdness": [
+              -1,
+              -0.9333
+            ],
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "the_edge:glitchwood_forest",
+          "parameters": {
+            "temperature": [
+              -0.45,
+              -0.15
+            ],
+            "humidity": [
+              -0.1,
+              0.1
+            ],
+            "continentalness": [
+              -0.11,
+              0.3
+            ],
+            "erosion": [
+              -0.7799,
+              -0.375
+            ],
+            "weirdness": [
+              -1,
+              -0.9333
+            ],
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "the_edge:glacial_peaks",
+          "parameters": {
+            "temperature": [
+              -1,
+              -0.45
+            ],
+            "humidity": [
+              -1,
+              -0.35
+            ],
+            "continentalness": [
+              0.03,
+              1
+            ],
+            "erosion": [
+              -1,
+              -0.7799
+            ],
+            "weirdness": [
+              -0.9333,
+              -0.7666
+            ],
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "the_edge:frozen_wastes",
+          "parameters": {
+            "temperature": [
+              -0.9,
+              -0.25
+            ],
+            "humidity": [
+              -1,
+              -0.25
+            ],
+            "continentalness": [
+              0.03,
+              1
+            ],
+            "erosion": [
+              -1,
+              -0.9799
+            ],
+            "weirdness": [
+              -0.9333,
+              -0.7666
+            ],
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "the_edge:starry_stream",
+          "parameters": {
+            "temperature": [
+              -0.75,
+              -0.15
+            ],
+            "humidity": [
+              -0.13,
+              0.1
+            ],
+            "continentalness": [
+              -0.1,
+              0.3
+            ],
+            "erosion": [
+              -0.7999,
+              -0.375
+            ],
+            "weirdness": [
+              -1,
+              -0.9933
+            ],
+            "depth": 0,
+            "offset": 0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,5 +1,6 @@
 package com.pouffydev.the_edge.content.block.foliage;
 
+import com.pouffydev.the_edge.foundation.TETags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -11,9 +12,9 @@ import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
-public class LevivineBlock extends DoublePlantBlock {
+public class LevivineBlock extends DoubleEdgePlantBlock {
     public LevivineBlock(Properties properties) {
-        super(properties);
+        super(properties, TETags.AllBlockTags.supportsForestPlants.tag);
     }
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity) {

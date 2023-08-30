@@ -34,10 +34,7 @@ import org.slf4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.OptionalLong;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -75,7 +72,7 @@ public record WorldGenerator(DataGenerator generator) implements DataProvider {
     private Registry<LevelStem> registerTESettings(RegistryAccess access) {
         WritableRegistry<LevelStem> writableregistry = new MappedRegistry<>(Registry.LEVEL_STEM_REGISTRY, Lifecycle.experimental(), null);
         Registry<Biome> biomeRegistry = access.registryOrThrow(Registry.BIOME_REGISTRY);
-        Holder<NoiseGeneratorSettings> noiseGenSettings = access.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY).getOrCreateHolder(TENoiseGenerationSettings.FLOATING_ISLANDS.getKey());
+        Holder<NoiseGeneratorSettings> noiseGenSettings = access.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY).getOrCreateHolder(Objects.requireNonNull(TENoiseGenerationSettings.FLOATING_ISLANDS.getKey()));
         
         NoiseBasedChunkGenerator forestChunkGen =
                 new NoiseBasedChunkGenerator(
@@ -92,7 +89,7 @@ public record WorldGenerator(DataGenerator generator) implements DataProvider {
     private Registry<LevelStem> registerSkylightSettings(RegistryAccess access) {
         WritableRegistry<LevelStem> writableregistry = new MappedRegistry<>(Registry.LEVEL_STEM_REGISTRY, Lifecycle.experimental(), null);
         Registry<Biome> biomeRegistry = new MappedRegistry<>(Registry.BIOME_REGISTRY, Lifecycle.experimental(), null);
-        Holder<NoiseGeneratorSettings> noiseGenSettings = access.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY).getOrCreateHolder(TENoiseGenerationSettings.SKYLIGHT_NOISE_GEN.getKey());
+        Holder<NoiseGeneratorSettings> noiseGenSettings = access.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY).getOrCreateHolder(Objects.requireNonNull(TENoiseGenerationSettings.SKYLIGHT_NOISE_GEN.getKey()));
         
         NoiseBasedChunkGenerator forestChunkGen =
                 new NoiseBasedChunkGenerator(

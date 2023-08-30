@@ -21,9 +21,46 @@ public class TENoiseGenerationSettings {
     
     public static final RegistryObject<NoiseGeneratorSettings> EDGE_NOISE_GEN = NOISE_GENERATORS.register("edge_noise_gen", TENoiseGenerationSettings::tfDefault);
     public static final RegistryObject<NoiseGeneratorSettings> SKYLIGHT_NOISE_GEN = NOISE_GENERATORS.register("skylight_noise_gen", TENoiseGenerationSettings::skylight);
-    static final NoiseSettings FLOATING_ISLANDS_NOISE_SETTINGS = NoiseSettings.create(0, 256, new NoiseSamplingSettings(2.0D, 1.0D, 80.0D, 160.0D), new NoiseSlider(-23.4375D, 64, -46), new NoiseSlider(-0.234375D, 7, 1), 2, 1, TerrainProvider.floatingIslands());
     public static final RegistryObject<NoiseGeneratorSettings> FLOATING_ISLANDS = NOISE_GENERATORS.register("floating_islands", TENoiseGenerationSettings::floatingIslands);
     
+    public static NoiseGeneratorSettings floatingIslands() {
+        NoiseSettings tfNoise = NoiseSettings.create(
+                0,
+                256,
+                new NoiseSamplingSettings(2.0D, 1.0D, 80.0D, 160.0D),
+                new NoiseSlider(-23.4375D, 64, -46),
+                new NoiseSlider(-0.234375D, 7, 1), 2, 1,
+                new TerrainShaper(CubicSpline.constant(0.0F), CubicSpline.constant(0.0F), CubicSpline.constant(0.0F))
+        );
+        return new NoiseGeneratorSettings(
+                tfNoise,
+                TEBlocks.EDGESTONE.get().defaultBlockState(),
+                TEFluids.STARFALL.get().defaultFluidState().createLegacyBlock(),
+                new NoiseRouterWithOnlyNoises(
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero()
+                ),
+                TESurfaceRules.teSurface(),
+                0,
+                false,
+                false,
+                false,
+                false
+        );
+    }
     public static NoiseGeneratorSettings tfDefault() {
         NoiseSettings tfNoise = NoiseSettings.create(
                 -32, //TODO Deliberate over this. For now it'll be -32
@@ -63,23 +100,6 @@ public class TENoiseGenerationSettings {
                 false,
                 false,
                 false
-        );
-    }
-    public static NoiseGeneratorSettings floatingIslands() {
-        return new NoiseGeneratorSettings(FLOATING_ISLANDS_NOISE_SETTINGS,
-                TEBlocks.EDGESTONE.get().defaultBlockState(),
-                TEFluids.STARFALL.get().defaultFluidState().createLegacyBlock(),
-                NoiseRouterData.overworldWithoutCaves(FLOATING_ISLANDS_NOISE_SETTINGS),
-                SurfaceRuleData.overworldLike(
-                        false,
-                        false,
-                        false
-                ),
-                0,
-                false,
-                false,
-                false,
-                true
         );
     }
     

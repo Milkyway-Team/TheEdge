@@ -1,16 +1,18 @@
 package com.pouffydev.the_edge;
 
-import com.pouffydev.the_edge.content.block.foliage.BearTrapBlock;
-import com.pouffydev.the_edge.content.block.foliage.EdgeBushBlock;
-import com.pouffydev.the_edge.content.block.foliage.LevivineBlock;
-import com.pouffydev.the_edge.content.block.foliage.SpineCurlBlock;
+import com.pouffydev.the_edge.content.block.foliage.*;
 import com.pouffydev.the_edge.content.equipment.spacesuit.SpaceBacktankBlock;
 import com.pouffydev.the_edge.foundation.TETags;
 import com.pouffydev.the_edge.foundation.client.TEBlockstateGen;
 import com.simibubi.create.foundation.data.*;
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -73,9 +75,11 @@ public class TEBlocks {
                     .sound(SoundType.NYLIUM)
             )
             .transform(pickaxeOnly())
-            .blockstate(BlockStateGen.simpleCubeAll("glitched_nylium_top"))
+            .blockstate(TEBlockstateGen.variantNyliumBlock("glitched_nylium", "edgestone"))
+            .tag(TETags.AllBlockTags.supportsForestPlants.tag)
             .lang("Glitched Nylium")
             .item()
+            .model((c, p) -> p.cubeBottomTop(c.getName(), p.modLoc("block/glitched_nylium_side_2"), p.modLoc("block/palettes/stone_types/natural/edgestone_2"), p.modLoc("block/glitched_nylium_top")))
             .build()
             .register();
     public static final BlockEntry<Block> frostedNylium = REGISTRATE.block("frosted_nylium", Block::new)
@@ -85,9 +89,11 @@ public class TEBlocks {
                     .sound(SoundType.SNOW)
             )
             .transform(pickaxeOnly())
-            .blockstate(BlockStateGen.simpleCubeAll("frosted_nylium_top"))
+            .blockstate(TEBlockstateGen.variantNyliumBlock("frosted_nylium", "edgestone"))
+            .tag(TETags.AllBlockTags.supportsFrostedPlants.tag)
             .lang("Frosted Nylium")
             .item()
+            .model((c, p) -> p.cubeBottomTop(c.getName(), p.modLoc("block/frosted_nylium_side_2"), p.modLoc("block/palettes/stone_types/natural/edgestone_2"), p.modLoc("block/frosted_nylium_top")))
             .build()
             .register();
     public static final BlockEntry<SpaceBacktankBlock> platinumBacktank =
@@ -169,18 +175,19 @@ public class TEBlocks {
             .register();
     
     //Plants
-    public static final BlockEntry<DoublePlantBlock> tallSpinecurl = REGISTRATE.block("tall_spinecurl", DoublePlantBlock::new)
+    public static final BlockEntry<DoubleEdgePlantBlock> tallSpinecurl = REGISTRATE.block("tall_spinecurl", (props) ->  new DoubleEdgePlantBlock(props, TETags.AllBlockTags.supportsForestPlants.tag))
             .initialProperties(() -> Blocks.TALL_GRASS)
             .properties(p -> p
                     .sound(SoundType.WART_BLOCK)
                     .noCollission()
                     .randomTicks()
                     .instabreak()
-                    .lightLevel(s -> 15)
             )
             .blockstate(TEBlockstateGen.existingDoubleFoliage())
             .lang("Tall Spinecurl")
-            .simpleItem()
+            .item()
+            .model(AssetLookup.customBlockItemModel("spinecurl/item_tall"))
+            .build()
             .register();
     
     public static final BlockEntry<SpineCurlBlock> spinecurl = REGISTRATE.block("spinecurl", SpineCurlBlock::new)
@@ -190,11 +197,12 @@ public class TEBlocks {
                     .noCollission()
                     .randomTicks()
                     .instabreak()
-                    .lightLevel(s -> 15)
             )
             .blockstate(TEBlockstateGen.spineCurl())
             .lang("Spinecurl")
-            .simpleItem()
+            .item()
+            .model(AssetLookup.customBlockItemModel("spinecurl/item"))
+            .build()
             .register();
     
     public static final BlockEntry<LevivineBlock> levivine = REGISTRATE.block("levivine", LevivineBlock::new)
@@ -204,11 +212,12 @@ public class TEBlocks {
                     .noCollission()
                     .randomTicks()
                     .instabreak()
-                    .lightLevel(s -> 15)
             )
             .blockstate(TEBlockstateGen.existingDoubleFoliage())
             .lang("Levivine")
-            .simpleItem()
+            .item()
+            .model(AssetLookup.customBlockItemModel("levivine/item"))
+            .build()
             .register();
     public static final BlockEntry<EdgeBushBlock> frostSpike = REGISTRATE.block("frost_spike", (props) ->  new EdgeBushBlock(props, TETags.AllBlockTags.supportsFrostedPlants.tag))
             .initialProperties(() -> Blocks.TALL_GRASS)
@@ -217,11 +226,12 @@ public class TEBlocks {
                     .noCollission()
                     .randomTicks()
                     .instabreak()
-                    .lightLevel(s -> 15)
             )
             .blockstate(TEBlockstateGen.existingEdgeBush())
             .lang("Frost Spike")
-            .simpleItem()
+            .item()
+            .model(AssetLookup.customBlockItemModel("frost_spike/item"))
+            .build()
             .register();
     
     public static final BlockEntry<BearTrapBlock> chompweed = REGISTRATE.block("chompweed", BearTrapBlock::new)
@@ -231,11 +241,12 @@ public class TEBlocks {
                     .noCollission()
                     .randomTicks()
                     .instabreak()
-                    .lightLevel(s -> 15)
             )
             .blockstate(TEBlockstateGen.bearTrap())
             .lang("Chompweed")
-            .simpleItem()
+            .item()
+            .model(AssetLookup.customBlockItemModel("chompweed/triggered_false"))
+            .build()
             .register();
     
     

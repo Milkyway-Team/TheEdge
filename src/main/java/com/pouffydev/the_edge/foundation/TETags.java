@@ -105,6 +105,7 @@ public class TETags {
         baseStoneEdge(MOD, "base_stone_edge"),
         baseSurfaceEdge(MOD, "base_surface_edge"),
         supportsFrostedPlants(MOD, "supports_frosted_plants"),
+        supportsForestPlants(MOD, "supports_forest_plants"),
         ;
         public final TagKey<Block> tag;
         public final boolean alwaysDatagen;

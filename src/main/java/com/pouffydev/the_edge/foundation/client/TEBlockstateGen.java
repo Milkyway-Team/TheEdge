@@ -1,6 +1,7 @@
 package com.pouffydev.the_edge.foundation.client;
 
 import com.pouffydev.the_edge.content.block.foliage.BearTrapBlock;
+import com.pouffydev.the_edge.content.block.foliage.DoubleEdgePlantBlock;
 import com.pouffydev.the_edge.content.block.foliage.EdgeBushBlock;
 import com.pouffydev.the_edge.content.block.foliage.SpineCurlBlock;
 import com.simibubi.create.content.kinetics.base.DirectionalAxisKineticBlock;
@@ -167,8 +168,27 @@ public class TEBlockstateGen {
         prov.simpleBlock(ctx.get(), prov.models()
                 .cubeAll(ctx.getName(), prov.modLoc(texturePath)));
     }
-    
-    public static <B extends DoublePlantBlock> NonNullBiConsumer<DataGenContext<Block, B>, RegistrateBlockstateProvider> existingDoubleFoliage() {
+    public static <P extends Block> NonNullBiConsumer<DataGenContext<Block, P>, RegistrateBlockstateProvider> variantNyliumBlock(String type, String variantPalette) {
+        return (c, p) -> {
+            ConfiguredModel[] variants = new ConfiguredModel[4];
+            for (int i = 0; i < variants.length; i++)
+                variants[i] = ConfiguredModel.builder()
+                        .modelFile(p.models()
+                                .cubeBottomTop(type + "_natural_" + i, p.modLoc("block/" + type + "_side_" + i), p.modLoc("block/palettes/stone_types/natural/" + variantPalette + "_" + i), p.modLoc("block/" + type + "_top")))
+                        .buildLast();
+            p.getVariantBuilder(c.get())
+                    .partialState()
+                    .setModels(variants);
+        };
+    }
+    public static <T extends Block> void cubeBottomTop(DataGenContext<Block, T> ctx, RegistrateBlockstateProvider prov,
+                                                       String textureSubDir) {
+        String sidePath = "block/" + textureSubDir + "_side";
+        String topPath = "block/" + textureSubDir + "_top";
+        String bottomPath = "block/" + textureSubDir + "_bottom";
+        prov.models().cubeBottomTop(ctx.getName(), prov.modLoc(sidePath), prov.modLoc(topPath), prov.modLoc(bottomPath));
+    }
+    public static <B extends DoubleEdgePlantBlock> NonNullBiConsumer<DataGenContext<Block, B>, RegistrateBlockstateProvider> existingDoubleFoliage() {
         return (c, p) -> {
             p.getVariantBuilder(c.get())
                     .forAllStatesExcept(state -> {

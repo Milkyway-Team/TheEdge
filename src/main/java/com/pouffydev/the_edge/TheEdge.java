@@ -3,6 +3,7 @@ package com.pouffydev.the_edge;
 import com.mojang.logging.LogUtils;
 import com.pouffydev.the_edge.foundation.ModItemTab;
 import com.pouffydev.the_edge.foundation.TETags;
+import com.pouffydev.the_edge.foundation.client.TEClient;
 import com.pouffydev.the_edge.foundation.config.TEConfigs;
 import com.pouffydev.the_edge.foundation.data.world.biome.BiomeKeys;
 import com.pouffydev.the_edge.foundation.data.world.biome.TEBiomeProvider;
@@ -14,10 +15,12 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -58,7 +61,7 @@ public class TheEdge
         TEConfigs.register(modLoadingContext);
         TETags.init();
         registrate.registerEventListeners(eventBus);
-        
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> TEClient.onCtorClient(eventBus, forgeEventBus));
         MinecraftForge.EVENT_BUS.register(this);
     }
     @Contract("_ -> new")

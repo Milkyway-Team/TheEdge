@@ -1,7 +1,18 @@
 {
   "variants": {
-    "": {
-      "model": "the_edge:block/glitched_nylium"
-    }
+    "": [
+      {
+        "model": "the_edge:block/glitched_nylium_natural_0"
+      },
+      {
+        "model": "the_edge:block/glitched_nylium_natural_1"
+      },
+      {
+        "model": "the_edge:block/glitched_nylium_natural_2"
+      },
+      {
+        "model": "the_edge:block/glitched_nylium_natural_3"
+      }
+    ]
   }
 }

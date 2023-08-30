@@ -1,0 +1,46 @@
+{
+  "temperature": 0.7,
+  "downfall": 0.8,
+  "precipitation": "none",
+  "category": "forest",
+  "effects": {
+    "sky_color": 7279199,
+    "fog_color": 7356778,
+    "water_color": 15623894,
+    "water_fog_color": 5382974,
+    "grass_color": 940078,
+    "foliage_color": 5804155,
+    "music": {
+      "sound": "the_edge:music.bg",
+      "min_delay": 0,
+      "max_delay": 0,
+      "replace_current_music": true
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
+  "features": [
+    [],
+    [
+      "the_edge:starfall_lake_underground",
+      "the_edge:starfall_lake"
+    ],
+    [
+      "the_edge:starry_edgestone_pile"
+    ],
+    [],
+    [
+      "the_edge:patch_vegetation"
+    ],
+    [
+      "minecraft:freeze_top_layer"
+    ]
+  ]
+}

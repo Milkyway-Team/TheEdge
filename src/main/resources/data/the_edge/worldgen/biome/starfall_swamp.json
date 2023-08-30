@@ -1,0 +1,53 @@
+{
+  "temperature": 0.8,
+  "downfall": 0.9,
+  "precipitation": "none",
+  "category": "swamp",
+  "effects": {
+    "sky_color": 7907327,
+    "fog_color": 12638463,
+    "water_color": 6388580,
+    "water_fog_color": 2302743,
+    "foliage_color": 6975545,
+    "grass_color_modifier": "swamp",
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2
+    },
+    "music": {
+      "sound": "the_edge:music.bg",
+      "min_delay": 0,
+      "max_delay": 0,
+      "replace_current_music": true
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
+  "features": [
+    [],
+    [
+      "the_edge:starfall_lake_underground",
+      "the_edge:starfall_lake"
+    ],
+    [
+      "minecraft:fossil_upper",
+      "minecraft:fossil_lower"
+    ],
+    [],
+    [
+      "the_edge:patch_vegetation"
+    ],
+    [
+      "minecraft:freeze_top_layer"
+    ]
+  ]
+}

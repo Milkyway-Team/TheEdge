@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "forge:ores/bismuth"
+  },
+  "result": "the_edge:ancient_bismuth_ingot",
+  "experience": 1.0,
+  "cookingtime": 200
+}
