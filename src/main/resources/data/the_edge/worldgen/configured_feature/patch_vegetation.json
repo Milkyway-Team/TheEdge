@@ -5,21 +5,27 @@
       "type": "minecraft:weighted_state_provider",
       "entries": [
         {
-          "weight": 4,
-          "data": {
-            "Name": "the_edge:levivine"
-          }
-        },
-        {
           "weight": 3,
           "data": {
             "Name": "the_edge:spinecurl"
           }
         },
         {
+          "weight": 4,
+          "data": {
+            "Name": "the_edge:levivine",
+            "Properties": {
+              "half": "lower"
+            }
+          }
+        },
+        {
           "weight": 2,
           "data": {
-            "Name": "the_edge:tall_spinecurl"
+            "Name": "the_edge:tall_spinecurl",
+            "Properties": {
+              "half": "lower"
+            }
           }
         }
       ]

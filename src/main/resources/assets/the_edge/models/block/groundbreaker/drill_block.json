@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "the_edge:block/transparent",
+    "particle": "the_edge:block/bismuth_casing"
+  }
+}

@@ -35,6 +35,7 @@ public class TEClient {
         ItemBlockRenderTypes.setRenderLayer(TEBlocks.spinecurl.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(TEBlocks.levivine.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(TEBlocks.frostSpike.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(TEBlocks.groundbreakerDrill.get(), RenderType.cutout());
     }
     @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ModBusEvents {

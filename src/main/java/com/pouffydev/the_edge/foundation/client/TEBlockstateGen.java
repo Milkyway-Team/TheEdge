@@ -10,7 +10,9 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -181,12 +183,36 @@ public class TEBlockstateGen {
                     .setModels(variants);
         };
     }
-    public static <T extends Block> void cubeBottomTop(DataGenContext<Block, T> ctx, RegistrateBlockstateProvider prov,
-                                                       String textureSubDir) {
+    public static <T extends Block> void cubeBottomTop(DataGenContext<Block, T> ctx, RegistrateBlockstateProvider prov, String textureSubDir) {
         String sidePath = "block/" + textureSubDir + "_side";
         String topPath = "block/" + textureSubDir + "_top";
         String bottomPath = "block/" + textureSubDir + "_bottom";
         prov.models().cubeBottomTop(ctx.getName(), prov.modLoc(sidePath), prov.modLoc(topPath), prov.modLoc(bottomPath));
+    }
+    public static <B extends Block> NonNullBiConsumer<DataGenContext<Block, B>, RegistrateBlockstateProvider> cubeBottomTop(String textureSubDir, String bottomTexture) {
+        String sidePath = "block/" + textureSubDir + "_side";
+        String topPath = "block/" + textureSubDir + "_top";
+        String bottomPath = "block/" + bottomTexture;
+        return (c, p) -> {
+            p.getVariantBuilder(c.get())
+                    .forAllStatesExcept(state -> {
+                        return ConfiguredModel.builder()
+                                .modelFile(p.models().cubeBottomTop(c.getName(), p.modLoc(sidePath), p.modLoc(bottomPath), p.modLoc(topPath)))
+                                .build();
+                    });
+        };
+    }
+    public static <B extends Block> NonNullBiConsumer<DataGenContext<Block, B>, RegistrateBlockstateProvider> exposedBlock(String type, Block material) {
+        String topPath = "block/exposed/" + type;
+        String sidePath = "block/" + type;
+        return (c, p) -> {
+            p.getVariantBuilder(c.get())
+                    .forAllStatesExcept(state -> {
+                        return ConfiguredModel.builder()
+                                .modelFile(p.models().cubeBottomTop(c.getName(), p.blockTexture(material), p.blockTexture(material), p.modLoc(topPath)))
+                                .build();
+                    });
+        };
     }
     public static <B extends DoubleEdgePlantBlock> NonNullBiConsumer<DataGenContext<Block, B>, RegistrateBlockstateProvider> existingDoubleFoliage() {
         return (c, p) -> {
@@ -207,6 +233,16 @@ public class TEBlockstateGen {
                     .forAllStatesExcept(state -> {
                         return ConfiguredModel.builder()
                                 .modelFile(p.models().getExistingFile(p.modLoc("block/" + c.getName() + "/upper")))
+                                .build();
+                    });
+        };
+    }
+    public static <B extends Block> NonNullBiConsumer<DataGenContext<Block, B>, RegistrateBlockstateProvider> transparentBaseModel(String path) {
+        return (c, p) -> {
+            p.getVariantBuilder(c.get())
+                    .forAllStatesExcept(state -> {
+                        return ConfiguredModel.builder()
+                                .modelFile(p.models().getExistingFile(p.modLoc("block/" + path)))
                                 .build();
                     });
         };

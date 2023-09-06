@@ -1,0 +1,5 @@
+{
+  "requiredBlock": "the_edge:exposed_stone",
+  "platformBlock": "minecraft:stone",
+  "lootTable": "the_edge:blocks/groundbreaker/stone"
+}

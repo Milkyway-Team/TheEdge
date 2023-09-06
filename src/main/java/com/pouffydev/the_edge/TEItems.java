@@ -1,8 +1,10 @@
 package com.pouffydev.the_edge;
 
 import com.pouffydev.the_edge.content.equipment.TEArmorMaterials;
+import com.pouffydev.the_edge.content.equipment.insulation_pack.InsulationPackItem;
 import com.pouffydev.the_edge.content.equipment.spacesuit.SpaceArmorItem;
 import com.pouffydev.the_edge.content.equipment.spacesuit.SpaceBacktankItem;
+import com.pouffydev.the_edge.content.equipment.spacesuit.upgraded.UpgradedLeggingsItem;
 import com.pouffydev.the_edge.foundation.TETags;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
@@ -108,6 +110,14 @@ public class TEItems {
     public static final ItemEntry<SpaceArmorItem> platinumBoots = REGISTRATE.item("platinum_boots", p -> new SpaceArmorItem(TEArmorMaterials.platinum, EquipmentSlot.FEET, p, TheEdge.asResource("platinum_spacesuit")))
             .properties(Item.Properties::fireResistant)
             .tag(forgeItemTag("armors/boots"))
+            .register();
+    public static final ItemEntry<InsulationPackItem> insulationPack = REGISTRATE.item("insulation_pack", InsulationPackItem::new)
+            .properties(Item.Properties::fireResistant)
+            .register();
+    
+    public static final ItemEntry<UpgradedLeggingsItem> upgradedLeggings = REGISTRATE.item("upgraded_platinum_leggings", p -> new UpgradedLeggingsItem(TEArmorMaterials.platinum, p, TheEdge.asResource("upgraded_spacesuit")))
+            .properties(Item.Properties::fireResistant)
+            .tag(forgeItemTag("armors/leggings"))
             .register();
     public static void register() {}
 }

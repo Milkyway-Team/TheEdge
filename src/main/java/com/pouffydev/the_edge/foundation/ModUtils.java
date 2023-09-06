@@ -1,6 +1,8 @@
 package com.pouffydev.the_edge.foundation;
 
 import com.pouffydev.the_edge.TheEdge;
+import com.pouffydev.the_edge.foundation.data.world.biome.BiomeKeys;
+import com.pouffydev.the_edge.foundation.data.world.biome.TEBiomeProvider;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

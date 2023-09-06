@@ -1,23 +1,25 @@
 package com.pouffydev.the_edge;
 
+import com.pouffydev.the_edge.content.block.kinetics.gateway.attuner.Attuner;
+import com.pouffydev.the_edge.content.block.kinetics.groundbreaker.GroundbreakerCore;
+import com.pouffydev.the_edge.content.block.kinetics.cryo_fan.CryoFan;
+import com.pouffydev.the_edge.content.block.kinetics.groundbreaker.drill.GBDrillBlock;
+import com.pouffydev.the_edge.content.block.kinetics.groundbreaker.gearbox.GBGearbox;
+import com.pouffydev.the_edge.content.block.kinetics.groundbreaker.json.ExposedBlock;
 import com.pouffydev.the_edge.content.block.foliage.*;
 import com.pouffydev.the_edge.content.equipment.spacesuit.SpaceBacktankBlock;
 import com.pouffydev.the_edge.foundation.TETags;
 import com.pouffydev.the_edge.foundation.client.TEBlockstateGen;
+import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.foundation.data.*;
-import com.tterrag.registrate.providers.DataGenContext;
-import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
@@ -249,6 +251,100 @@ public class TEBlocks {
             .build()
             .register();
     
+    public static final BlockEntry<CryoFan> areaHeater = REGISTRATE.block("cryo_fan", CryoFan::new)
+            .initialProperties(deepslatePlatinumOre)
+            .properties(p -> p
+                    .sound(SoundType.METAL)
+                    .noCollission()
+                    .randomTicks()
+                    .instabreak()
+            )
+            .transform(BlockStressDefaults.setImpact(8.0))
+            .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
+            .lang("Area Heater")
+            .item()
+            .model(AssetLookup.customBlockItemModel("cryo_fan/item"))
+            .build()
+            .register();
     
+    public static final BlockEntry<GroundbreakerCore> groundbreakerCore = REGISTRATE.block("groundbreaker_core", GroundbreakerCore::new)
+            .initialProperties(deepslatePlatinumOre)
+            .properties(p -> p
+                    .sound(SoundType.METAL)
+            )
+            .transform(BlockStressDefaults.setImpact(8.0))
+            .blockstate(TEBlockstateGen.cubeBottomTop("groundbreaker_core", "bismuth_casing"))
+            .lang("Groundbreaker Core")
+            .item()
+            .build()
+            .register();
+    
+    public static final BlockEntry<GBDrillBlock> groundbreakerDrill = REGISTRATE.block("groundbreaker_drill", GBDrillBlock::new)
+            .initialProperties(deepslatePlatinumOre)
+            .properties(p -> p
+                    .sound(SoundType.METAL)
+                    .noOcclusion()
+            )
+            .transform(BlockStressDefaults.setImpact(12.0))
+            .blockstate(TEBlockstateGen.transparentBaseModel("groundbreaker/drill_block"))
+            .lang("Groundbreaker Drill")
+            .item()
+            .model(AssetLookup.customBlockItemModel("groundbreaker/drill"))
+            .build()
+            .register();
+    public static final BlockEntry<GBGearbox> groundbreakerGearbox = REGISTRATE.block("groundbreaker_gearbox", GBGearbox::new)
+            .initialProperties(deepslatePlatinumOre)
+            .properties(p -> p
+                    .sound(SoundType.METAL)
+                    .noOcclusion()
+            )
+            .transform(BlockStressDefaults.setImpact(12.0))
+            .blockstate(TEBlockstateGen.transparentBaseModel("groundbreaker/gearbox"))
+            .lang("Groundbreaker Gearbox")
+            .item()
+            .model(AssetLookup.customBlockItemModel("groundbreaker/gearbox_item"))
+            .build()
+            .register();
+    
+    public static final BlockEntry<Attuner> attuner = REGISTRATE.block("attuner", Attuner::new)
+            .initialProperties(deepslatePlatinumOre)
+            .properties(p -> p
+                    .sound(SoundType.METAL)
+                    .noOcclusion()
+            )
+            .transform(BlockStressDefaults.setImpact(12.0))
+            .blockstate(TEBlockstateGen.transparentBaseModel("attuner/block"))
+            .lang("Edge Attuner")
+            .item()
+            .model(AssetLookup.customBlockItemModel("attuner/item"))
+            .build()
+            .register();
+    
+    
+    
+    
+    
+    
+    
+    public static final BlockEntry<ExposedBlock> exposedStone = REGISTRATE.block("exposed_stone", ExposedBlock::new)
+            .initialProperties(Material.STONE)
+            .properties(p -> p
+                    .sound(SoundType.STONE)
+            )
+            .blockstate(TEBlockstateGen.exposedBlock("stone", Blocks.STONE))
+            .lang("Exposed Stone")
+            .item()
+            .build()
+            .register();
+    public static final BlockEntry<ExposedBlock> exposedDeepslate = REGISTRATE.block("exposed_deepslate", ExposedBlock::new)
+            .initialProperties(Material.STONE)
+            .properties(p -> p
+                    .sound(SoundType.DEEPSLATE)
+            )
+            .blockstate(TEBlockstateGen.exposedBlock("deepslate", Blocks.DEEPSLATE))
+            .lang("Exposed Deepslate")
+            .item()
+            .build()
+            .register();
     public static void register() {}
 }

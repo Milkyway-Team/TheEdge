@@ -1,6 +1,7 @@
 package com.pouffydev.the_edge.mixin;
 
 import com.pouffydev.the_edge.foundation.ModUtils;
+import com.pouffydev.the_edge.foundation.oxygen.EntityEffectsSystem;
 import com.pouffydev.the_edge.foundation.oxygen.EntityOxygenSystem;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,6 +26,7 @@ public class LivingEntityMixin {
                 }
                 
                 EntityOxygenSystem.oxygenTick(entity, (ServerLevel) level);
+                EntityEffectsSystem.frostTick(entity, (ServerLevel) level);
                 
                 if (!ModUtils.isEdgelevel(level)) {
                     return;

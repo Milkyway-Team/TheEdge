@@ -151,6 +151,7 @@ public class TETags {
     }
     public enum AllItemTags {
         OXYGENATED_ARMOR(MOD, "oxygenated_armor"),
+        insulatorPack(MOD, "insulator_pack"),
         
         
         ;
@@ -199,7 +200,8 @@ public class TETags {
     }
     
     public enum AllEntityTags {
-        LIVES_WITHOUT_OXYGEN(MOD, "lives_without_oxygen"),
+        livesWithoutOxygen(MOD, "lives_without_oxygen"),
+        canSurviveFrost(MOD, "can_survive_frost"),
         
         ;
         
@@ -287,6 +289,7 @@ public class TETags {
         private static void init() {
         }
     }
+    
     private static TagKey<EntityType<?>> createEntityTypeTag(String p_203849_) {
         return TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation(p_203849_));
     }

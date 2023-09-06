@@ -11,7 +11,11 @@ public class TEPartialModels {
             BACKTANK_AIR_3 = block("platinum_backtank/air_bar_3"),
             BACKTANK_AIR_4 = block("platinum_backtank/air_bar_4"),
             BACKTANK_AIR_5 = block("platinum_backtank/air_bar_5"),
-            BACKTANK_SHAFT = block("platinum_backtank/shaft")
+            BACKTANK_SHAFT = block("platinum_backtank/shaft"),
+    GB_DRILL = block("groundbreaker/drill"),
+    ATTUNER_AXIS = block("attuner/axis"),
+    ATTUNER_RING = block("attuner/ring")
+    
     
     ;
     

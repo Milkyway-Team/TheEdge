@@ -19,7 +19,7 @@ public class EntityOxygenSystem {
             return;
         }
         
-        if (ModUtils.checkTag(entity, TETags.AllEntityTags.LIVES_WITHOUT_OXYGEN.tag)) {
+        if (ModUtils.checkTag(entity, TETags.AllEntityTags.livesWithoutOxygen.tag)) {
             return;
         }
         

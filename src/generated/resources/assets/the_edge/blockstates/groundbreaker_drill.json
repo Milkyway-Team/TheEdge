@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "the_edge:block/groundbreaker/drill_block"
+    },
+    "facing=up": {
+      "model": "the_edge:block/groundbreaker/drill_block"
+    },
+    "facing=north": {
+      "model": "the_edge:block/groundbreaker/drill_block"
+    },
+    "facing=south": {
+      "model": "the_edge:block/groundbreaker/drill_block"
+    },
+    "facing=west": {
+      "model": "the_edge:block/groundbreaker/drill_block"
+    },
+    "facing=east": {
+      "model": "the_edge:block/groundbreaker/drill_block"
+    }
+  }
+}

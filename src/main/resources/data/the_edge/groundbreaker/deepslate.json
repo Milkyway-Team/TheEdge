@@ -1,0 +1,5 @@
+{
+  "requiredBlock": "the_edge:exposed_deepslate",
+  "platformBlock": "minecraft:deepslate",
+  "lootTable": "the_edge:blocks/groundbreaker/deepslate"
+}
