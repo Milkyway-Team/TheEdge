@@ -34,7 +34,7 @@ public class UpgradedLeggingsItem extends SpaceArmorItem {
             ((Player) entity).getCooldowns().addCooldown(this, 999999999);
         }
         if (((Player) entity).getCooldowns().isOnCooldown(this))
-            player.sendMessage((Component) Lang.translate(TheEdge.ID, "message.boost_cooldown"), player.getUUID());
+            player.sendMessage(Lang.translate(TheEdge.ID, "message.boost_cooldown").component(), player.getUUID());
         if (entity.isOnGround())
             ((Player) entity).getCooldowns().removeCooldown(this);
     }
