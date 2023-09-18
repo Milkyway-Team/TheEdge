@@ -15,6 +15,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -51,10 +52,51 @@ public class GBDrillBlockEntity extends KineticBlockEntity {
     public GBDrillBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
     }
+    
+    public static void generalTick(Level level, BlockPos pos, BlockState state, GBDrillBlockEntity drill) {
+        drill.excavateTick();
+    }
     @SuppressWarnings("deprecation")
+    public void excavateTick() {
+        int randomWaitTime = Create.RANDOM.nextInt(20);
+        if (level.isClientSide) {
+            
+            return;
+        }
+        if (running) {
+            if (level.getGameTime() % 20 == 0) {
+                if (Create.RANDOM.nextInt(100) < randomWaitTime) {
+                    randomlyPopLootFromSurface(worldPosition, (ServerLevel) level);
+                }
+            }
+        }
+    }
+    @SuppressWarnings({"deprecation"})
+    public static void animationTick(Level level, BlockPos pos, BlockState state, GBDrillBlockEntity drill) {
+        if (!level.isClientSide)
+            return;
+        //Spawn particles based on the block type being mined around the block
+        for (JsonElement jsonElement : mineableBlocks) {
+            JsonObject json = jsonElement.getAsJsonObject();
+            String platformBlock = json.get("platformBlock").getAsString();
+            BlockPos randomPosAroundBlock = pos.offset(Create.RANDOM.nextInt(3) - 1, Create.RANDOM.nextInt(3) - 1, Create.RANDOM.nextInt(3) - 1);
+            if (level.getBlockState(pos).is(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(platformBlock))).defaultBlockState().getBlock())) {
+                ParticleOptions blockParticles = new BlockParticleOption(ParticleTypes.BLOCK, Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(platformBlock))).defaultBlockState());
+                level.addParticle(blockParticles, randomPosAroundBlock.getX(), randomPosAroundBlock.getY(), randomPosAroundBlock.getZ(), 0, 0, 0);
+            }
+        }
+    }
+    
     @Override
     public void tick() {
         super.tick();
+        if (level.isClientSide) {
+            animationTick(level, worldPosition, level.getBlockState(worldPosition), this);
+            return;
+        }
+        if (getSpeed() < 0 || getSpeed() > 0 && getSpeed() != 0) {
+            excavateTick();
+        }
         if (runningTicks >= 40) {
             running = false;
             runningTicks = 0;
@@ -62,15 +104,6 @@ public class GBDrillBlockEntity extends KineticBlockEntity {
         if (runningTicks <= 20) {
             running = true;
             runningTicks = 0;
-        }
-        int randomWaitTime = Create.RANDOM.nextInt(20);
-        if (running) {
-            if (level.getGameTime() % 20 == 0) {
-                if (Create.RANDOM.nextInt(100) < randomWaitTime) {
-                    randomlyPopLootFromSurface(worldPosition, (ServerLevel) level);
-                    spawnBlockBreakParticles(worldPosition, (ServerLevel) level);
-                }
-            }
         }
         if (runningTicks != 20)
             runningTicks++;
@@ -85,21 +118,6 @@ public class GBDrillBlockEntity extends KineticBlockEntity {
             }
         }
         return true;
-    }
-    @SuppressWarnings({"deprecation"})
-    public void spawnBlockBreakParticles(BlockPos pos, ServerLevel world) {
-        if (!world.isClientSide)
-            return;
-        //Spawn particles based on the block type being mined around the block
-        for (JsonElement jsonElement : mineableBlocks) {
-            JsonObject json = jsonElement.getAsJsonObject();
-            String platformBlock = json.get("platformBlock").getAsString();
-            BlockPos randomPosAroundBlock = pos.offset(Create.RANDOM.nextInt(3) - 1, Create.RANDOM.nextInt(3) - 1, Create.RANDOM.nextInt(3) - 1);
-            if (world.getBlockState(pos).is(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(platformBlock))).defaultBlockState().getBlock())) {
-                ParticleOptions blockParticles = new BlockParticleOption(ParticleTypes.BLOCK, Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(platformBlock))).defaultBlockState());
-                world.addParticle(blockParticles, randomPosAroundBlock.getX(), randomPosAroundBlock.getY(), randomPosAroundBlock.getZ(), 0, 0, 0);
-            }
-        }
     }
     @SuppressWarnings({"deprecation"})
     public void randomlyPopLootFromSurface(BlockPos pos, ServerLevel world) {

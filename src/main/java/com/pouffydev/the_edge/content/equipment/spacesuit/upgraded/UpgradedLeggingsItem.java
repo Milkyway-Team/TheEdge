@@ -30,8 +30,11 @@ public class UpgradedLeggingsItem extends SpaceArmorItem {
         if (player.isFallFlying()) {
             entity.setDeltaMovement(vec3.add(dir.getStepX() * boost, dir.getStepY() * boost, dir.getStepZ() * boost));
         }
-        if (TEKeys.boost.isDown() && !entity.isSteppingCarefully() && vec3.y < 0 && !player.isFallFlying()) {
+        if (TEKeys.boost.isDown() && !entity.isSteppingCarefully() && !player.isFallFlying() && !((Player) entity).getCooldowns().isOnCooldown(this)) {
             entity.setDeltaMovement(vec3.x, vec3.y + boost, vec3.z);
+            ((Player) entity).getCooldowns().addCooldown(this, 300);
         }
+        if (entity.fallDistance == 0)
+            ((Player) entity).getCooldowns().removeCooldown(this);
     }
 }

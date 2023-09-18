@@ -22,7 +22,6 @@ public class GBDrillBlock extends DirectionalKineticBlock implements IBE<GBDrill
     public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction face) {
         return face == Direction.UP;
     }
-    
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
         return TEShapes.drillHead.get(Direction.UP);
     }

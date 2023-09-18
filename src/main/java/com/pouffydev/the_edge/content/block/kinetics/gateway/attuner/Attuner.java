@@ -1,6 +1,7 @@
 package com.pouffydev.the_edge.content.block.kinetics.gateway.attuner;
 
 import com.pouffydev.the_edge.TEBlockEntities;
+import com.pouffydev.the_edge.TEShapes;
 import com.simibubi.create.AllShapes;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
 import com.simibubi.create.content.logistics.chute.AbstractChuteBlock;
@@ -22,13 +23,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class Attuner extends DirectionalKineticBlock implements IBE<AttunerBlockEntity> {
     
     public static final BooleanProperty linked = BooleanProperty.create("linked");
-    //private static BlockPattern attunerShape;
     public Attuner(Properties properties) {
         super(properties);
     }
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return AllShapes.LARGE_GEAR.get(pState.getValue(FACING));
+        return TEShapes.largeGearDirectional.get(pState.getValue(FACING));
     }
     @Override
     public Direction.Axis getRotationAxis(BlockState state) {
@@ -71,12 +71,4 @@ public class Attuner extends DirectionalKineticBlock implements IBE<AttunerBlock
     public BlockEntityType<? extends AttunerBlockEntity> getBlockEntityType() {
         return TEBlockEntities.ATTUNER.get();
     }
-    
-    //public static BlockPattern getOrCreateAttunerShape() {
-    //    if (attunerShape == null) {
-    //        attunerShape = BlockPatternBuilder.start().aisle("?vvv?", ">???<", ">???<", ">???<", "?^^^?").where('?', BlockInWorld.hasState(BlockStatePredicate.ANY)).where('^', BlockInWorld.hasState(BlockStatePredicate.forBlock(Blocks.END_PORTAL_FRAME).where(HAS_EYE, Predicates.equalTo(true)).where(FACING, Predicates.equalTo(Direction.SOUTH)))).where('>', BlockInWorld.hasState(BlockStatePredicate.forBlock(Blocks.END_PORTAL_FRAME).where(HAS_EYE, Predicates.equalTo(true)).where(FACING, Predicates.equalTo(Direction.WEST)))).where('v', BlockInWorld.hasState(BlockStatePredicate.forBlock(Blocks.END_PORTAL_FRAME).where(HAS_EYE, Predicates.equalTo(true)).where(FACING, Predicates.equalTo(Direction.NORTH)))).where('<', BlockInWorld.hasState(BlockStatePredicate.forBlock(Blocks.END_PORTAL_FRAME).where(HAS_EYE, Predicates.equalTo(true)).where(FACING, Predicates.equalTo(Direction.EAST)))).build();
-    //    }
-    //
-    //    return attunerShape;
-    //}
 }

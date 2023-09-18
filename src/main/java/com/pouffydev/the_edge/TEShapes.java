@@ -9,13 +9,17 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.function.BiFunction;
 
+import static com.simibubi.create.AllShapes.SIX_VOXEL_POLE;
 import static net.minecraft.core.Direction.DOWN;
 import static net.minecraft.core.Direction.UP;
 
 public class TEShapes {
     public static final VoxelShaper
             
-            drillHead = shape(3, 0, 3, 13, 4, 13).add(2, 4, 2, 14, 8, 14).add(2, 8, 2, 14.5, 14, 14.5).add(4, 14, 4, 12, 16, 12).forDirectional()
+            drillHead = shape(3, 0, 3, 13, 4, 13).add(2, 4, 2, 14, 8, 14).add(2, 8, 2, 14.5, 14, 14.5).add(4, 14, 4, 12, 16, 12).forDirectional();
+    public static final VoxelShape largeGear = cuboid(0, 6, 0, 16, 10, 16);
+    public static final VoxelShaper largeGearDirectional = shape(largeGear).add(SIX_VOXEL_POLE.get(Direction.Axis.Y))
+            .forDirectional()
             ;
     
     private static Builder shape(VoxelShape shape) {
