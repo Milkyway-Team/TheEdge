@@ -14,7 +14,13 @@ public class TEPartialModels {
             BACKTANK_SHAFT = block("platinum_backtank/shaft"),
     GB_DRILL = block("groundbreaker/drill"),
     ATTUNER_AXIS = block("attuner/axis"),
-    ATTUNER_RING = block("attuner/ring")
+    ATTUNER_RING = block("attuner/ring"),
+            
+            hd_dif0 = block("heart_door/dif0"),
+            hd_dif1 = block("heart_door/dif1"),
+            hd_dif2 = block("heart_door/dif2"),
+            hd_dif3 = block("heart_door/dif3"),
+            hd_dif4 = block("heart_door/dif4")
     
     
     ;

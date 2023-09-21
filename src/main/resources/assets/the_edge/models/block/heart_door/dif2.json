@@ -1,0 +1,16 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "the_edge:block/heart_door/difficulty_2",
+		"particle": "the_edge:block/heart_door/difficulty_2"
+	},
+	"elements": [
+		{
+			"from": [-16, 0, 1.99],
+			"to": [32, 64, 1.99],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		}
+	]
+}
