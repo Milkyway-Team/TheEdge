@@ -1,5 +1,6 @@
 package com.pouffydev.the_edge.foundation.client;
 
+import com.pouffydev.the_edge.content.block.dungeons.heart_door.LockedHeartDoorBlock;
 import com.pouffydev.the_edge.content.block.foliage.BearTrapBlock;
 import com.pouffydev.the_edge.content.block.foliage.DoubleEdgePlantBlock;
 import com.pouffydev.the_edge.content.block.foliage.EdgeBushBlock;
@@ -263,6 +264,16 @@ public class TEBlockstateGen {
                     .forAllStatesExcept(state -> {
                         return ConfiguredModel.builder()
                                 .modelFile(p.models().getExistingFile(p.modLoc("block/" + c.getName() + "/triggered_" + state.getValue(BearTrapBlock.triggered))))
+                                .build();
+                    });
+        };
+    }
+    public static <B extends LockedHeartDoorBlock> NonNullBiConsumer<DataGenContext<Block, B>, RegistrateBlockstateProvider> lockedHeartDoor() {
+        return (c, p) -> {
+            p.getVariantBuilder(c.get())
+                    .forAllStatesExcept(state -> {
+                        return ConfiguredModel.builder()
+                                .modelFile(p.models().getExistingFile(p.modLoc("block/heart_door/difficulty/" + state.getValue(LockedHeartDoorBlock.difficulty).getSerializedName() + "/locked_" + state.getValue(LockedHeartDoorBlock.locked))))
                                 .build();
                     });
         };

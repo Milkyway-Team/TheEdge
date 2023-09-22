@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "the_edge:item/raw_ancient_bismuth"
-  }
-}

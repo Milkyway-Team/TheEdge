@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "the_edge:block/groundbreaker_core_side",
-    "bottom": "the_edge:block/bismuth_casing",
-    "top": "the_edge:block/groundbreaker_core_top"
-  }
-}

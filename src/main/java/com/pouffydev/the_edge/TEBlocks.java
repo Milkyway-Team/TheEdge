@@ -1,5 +1,7 @@
 package com.pouffydev.the_edge;
 
+import com.pouffydev.the_edge.content.block.dungeons.heart_door.HeartDoorBlock;
+import com.pouffydev.the_edge.content.block.dungeons.heart_door.LockedHeartDoorBlock;
 import com.pouffydev.the_edge.content.block.kinetics.gateway.attuner.Attuner;
 import com.pouffydev.the_edge.content.block.kinetics.groundbreaker.GroundbreakerCore;
 import com.pouffydev.the_edge.content.block.kinetics.cryo_fan.CryoFan;
@@ -10,6 +12,7 @@ import com.pouffydev.the_edge.content.block.foliage.*;
 import com.pouffydev.the_edge.content.equipment.spacesuit.SpaceBacktankBlock;
 import com.pouffydev.the_edge.foundation.TETags;
 import com.pouffydev.the_edge.foundation.client.TEBlockstateGen;
+import com.pouffydev.the_edge.foundation.client.TEBuilderTransformers;
 import com.simibubi.create.AllSpriteShifts;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
@@ -341,16 +344,44 @@ public class TEBlocks {
             .item()
             .build()
             .register();
-    public static final BlockEntry<CasingBlock> glitchedEdgestone = REGISTRATE.block("glitched_edgestone", CasingBlock::new)
+    public static final BlockEntry<Block> glitchedEdgestone = REGISTRATE.block("glitched_edgestone", Block::new)
             .initialProperties(() -> Blocks.STONE)
             .properties(p -> p
                     .color(MaterialColor.GLOW_LICHEN)
                     .sound(SoundType.CALCITE)
             )
             .transform(pickaxeOnly())
-            .blockstate(BlockStateGen.naturalStoneTypeBlock("glitched_edgestone"))
             .lang("Glitched Edgestone")
-            .transform(BuilderTransformers.casing(() -> TESpriteShifts.glitchedEdgestone))
+            .transform(TEBuilderTransformers.ctBlock(() -> TESpriteShifts.glitchedEdgestone))
             .register();
+    
+    public static final BlockEntry<HeartDoorBlock> heartDoor = REGISTRATE.block("heart_door", (props) ->  new HeartDoorBlock(props))
+            .initialProperties(() -> Blocks.BEDROCK)
+            .properties(p -> p
+                    .sound(SoundType.GLASS)
+                    .strength(50.0F, 1200.0F)
+                    .noOcclusion()
+            )
+            .blockstate(TEBlockstateGen.horizontalAxisBlockProvider(true))
+            .transform(TEBuilderTransformers.heartDoor())
+            .lang("Heart Door")
+            .item()
+            .model(AssetLookup.customBlockItemModel("heart_door/item"))
+            .build()
+            .register();
+    public static final BlockEntry<LockedHeartDoorBlock> lockedHeartDoor = REGISTRATE.block("locked_heart_door", LockedHeartDoorBlock::new)
+            .initialProperties(() -> Blocks.BEDROCK)
+            .properties(p -> p
+                    .sound(SoundType.GLASS)
+                    .strength(50.0F, 1200.0F)
+                    .noOcclusion()
+            )
+            .blockstate(TEBlockstateGen.lockedHeartDoor())
+            .lang("Locked Heart Door")
+            .item()
+            .model(AssetLookup.customBlockItemModel("locked_heart_door/item"))
+            .build()
+            .register();
+    
     public static void register() {}
 }

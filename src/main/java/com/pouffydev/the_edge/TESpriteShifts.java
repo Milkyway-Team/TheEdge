@@ -11,6 +11,8 @@ import com.simibubi.create.foundation.block.render.SpriteShifter;
 public class TESpriteShifts {
     
     public static final CTSpriteShiftEntry glitchedEdgestone = omni("glitched_edgestone");
+    public static final CTSpriteShiftEntry heartDoor = omni("heart_door");
+    public static final CTSpriteShiftEntry heartDoorVanished = omni("starjump");
     
     private static CTSpriteShiftEntry omni(String name) {
         return getCT(AllCTTypes.OMNIDIRECTIONAL, name);
