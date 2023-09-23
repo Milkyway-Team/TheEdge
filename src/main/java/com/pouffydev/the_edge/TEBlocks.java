@@ -1,5 +1,6 @@
 package com.pouffydev.the_edge;
 
+import com.pouffydev.the_edge.content.block.dungeons.completion_monolith.CompletionMonolithBlock;
 import com.pouffydev.the_edge.content.block.dungeons.heart_door.HeartDoorBlock;
 import com.pouffydev.the_edge.content.block.dungeons.heart_door.LockedHeartDoorBlock;
 import com.pouffydev.the_edge.content.block.kinetics.gateway.attuner.Attuner;
@@ -20,6 +21,7 @@ import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -355,18 +357,17 @@ public class TEBlocks {
             .transform(TEBuilderTransformers.ctBlock(() -> TESpriteShifts.glitchedEdgestone))
             .register();
     
-    public static final BlockEntry<HeartDoorBlock> heartDoor = REGISTRATE.block("heart_door", (props) ->  new HeartDoorBlock(props))
+    public static final BlockEntry<HeartDoorBlock> heartDoor = REGISTRATE.block("heart_door", HeartDoorBlock::new)
             .initialProperties(() -> Blocks.BEDROCK)
             .properties(p -> p
                     .sound(SoundType.GLASS)
                     .strength(50.0F, 1200.0F)
                     .noOcclusion()
             )
-            .blockstate(TEBlockstateGen.horizontalAxisBlockProvider(true))
+            .blockstate(TEBlockstateGen.heartDoor())
             .transform(TEBuilderTransformers.heartDoor())
             .lang("Heart Door")
             .item()
-            .model(AssetLookup.customBlockItemModel("heart_door/item"))
             .build()
             .register();
     public static final BlockEntry<LockedHeartDoorBlock> lockedHeartDoor = REGISTRATE.block("locked_heart_door", LockedHeartDoorBlock::new)
@@ -379,7 +380,19 @@ public class TEBlocks {
             .blockstate(TEBlockstateGen.lockedHeartDoor())
             .lang("Locked Heart Door")
             .item()
-            .model(AssetLookup.customBlockItemModel("locked_heart_door/item"))
+            .build()
+            .register();
+    
+    public static final BlockEntry<CompletionMonolithBlock> completionMonolith = REGISTRATE.block("completion_monolith", CompletionMonolithBlock::new)
+            .initialProperties(() -> Blocks.BEDROCK)
+            .properties(p -> p
+                    .sound(SoundType.STONE)
+                    .strength(50.0F, 1200.0F)
+                    .noOcclusion()
+            )
+            .blockstate(TEBlockstateGen.completionMonolith())
+            .lang("Completion Monolith")
+            .item(DoubleHighBlockItem::new)
             .build()
             .register();
     

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ppp",
+    "ghg",
+    "sts"
+  ],
+  "key": {
+    "p": {
+      "tag": "forge:ingots/platinum"
+    },
+    "h": {
+      "item": "create:netherite_diving_helmet"
+    },
+    "g": {
+      "item": "minecraft:tinted_glass"
+    },
+    "s": {
+      "tag": "forge:plates/platinum"
+    },
+    "t": {
+      "item": "create:electron_tube"
+    }
+  },
+  "result": {
+    "item": "the_edge:platinum_helmet"
+  }
+}

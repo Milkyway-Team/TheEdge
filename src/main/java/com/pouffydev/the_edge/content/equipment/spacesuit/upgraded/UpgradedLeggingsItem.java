@@ -33,7 +33,6 @@ public class UpgradedLeggingsItem extends SpaceArmorItem {
         super(armorMaterial, EquipmentSlot.LEGS, properties, textureLoc);
     }
     static float boost = TEConfigs.server().equipment.spaceSuitBoost.getF();
-    @SuppressWarnings("SuspiciousIndentAfterControlStatement")
     @Override
     public void inventoryTick(@Nonnull ItemStack stack, Level level, @Nonnull Entity entity, int itemSlot, boolean isSelected) {
         super.inventoryTick(stack, level, entity, itemSlot, isSelected);
@@ -42,25 +41,8 @@ public class UpgradedLeggingsItem extends SpaceArmorItem {
         if (TEKeys.boost.isDown() && !entity.isSteppingCarefully() && !entity.isOnGround() && !player.isFallFlying() && !((Player) entity).getCooldowns().isOnCooldown(this)) {
             //entity.setDeltaMovement(vec3.x, vec3.y + boost, vec3.z);
             boostInLookDirection(entity, level);
-            ((Player) entity).getCooldowns().addCooldown(this, 999999999);
         }
         if (entity.isOnGround())
-            if (tag.getBoolean("Boosting")) {
-                ParticleOptions dust = new DustParticleOptions(new Color(255, 255, 255).asVectorF(), 2.0F);
-                Vec3 positionVec = entity.position();
-                Vec3 vec3 = entity.getDeltaMovement();
-                Vec3 start = VecHelper.offsetRandomly(positionVec, level.random, 4);
-                entity.fallDistance = 0;
-                for (int i = 0; i < 5; i++) {
-                    level.addParticle(dust, positionVec.x, positionVec.y, positionVec.z, vec3.x * -2.5, vec3.y * -2.5, vec3.z * -2.5);
-                    level.addParticle(dust, positionVec.x, positionVec.y, positionVec.z, vec3.x * -2.5, vec3.y * -2.5, vec3.z * -2.5);
-                    level.addParticle(dust, positionVec.x, positionVec.y, positionVec.z, vec3.x * -2.5, vec3.y * -2.5, vec3.z * -2.5);
-                    level.addParticle(dust, positionVec.x, positionVec.y, positionVec.z, vec3.x * -2.5, vec3.y * -2.5, vec3.z * -2.5);
-                    level.addParticle(dust, positionVec.x, positionVec.y, positionVec.z, vec3.x * -2.5, vec3.y * -2.5, vec3.z * -2.5);
-                    level.addParticle(dust, positionVec.x, positionVec.y, positionVec.z, vec3.x * -2.5, vec3.y * -2.5, vec3.z * -2.5);
-                }
-                tag.putBoolean("Boosting", false);
-            }
             ((Player) entity).getCooldowns().removeCooldown(this);
     }
     
@@ -90,7 +72,7 @@ public class UpgradedLeggingsItem extends SpaceArmorItem {
                 level.addParticle(lightCube, cubeStart.x, cubeStart.y, cubeStart.z, cubeMotion.x, cubeMotion.y, cubeMotion.z);
             }
             entity.setDeltaMovement(vec3.add(dir.get(Direction.Axis.X) * boost, dir.get(Direction.Axis.Y) * boost, dir.get(Direction.Axis.Z) * boost));
-            tag.putBoolean("Boosting", true);
+            ((Player) entity).getCooldowns().addCooldown(this, 999999999);
         }
     }
 }

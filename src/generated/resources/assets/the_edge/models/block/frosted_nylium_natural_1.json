@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "the_edge:block/frosted_nylium_side_1",
+    "bottom": "the_edge:block/palettes/stone_types/natural/edgestone_1",
+    "top": "the_edge:block/frosted_nylium_top"
+  }
+}

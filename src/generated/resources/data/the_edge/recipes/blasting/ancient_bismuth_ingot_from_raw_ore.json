@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "the_edge:raw_ancient_bismuth"
+  },
+  "result": "the_edge:ancient_bismuth_ingot",
+  "experience": 0.7,
+  "cookingtime": 100
+}

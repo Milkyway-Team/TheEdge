@@ -37,9 +37,9 @@ public class LockedHeartDoorBlock extends HeartDoorBlock {
         return switch (dungeonDifficulty) {
             case EASY -> 4;
             case NORMAL -> 6;
-            case HARD -> 8;
-            case EXTREME -> 12;
-            case IMPOSSIBLE -> 16;
+            case HARD -> 10;
+            case EXTREME -> 14;
+            case IMPOSSIBLE -> 18;
             default -> 0;
         };
     }
@@ -69,13 +69,13 @@ public class LockedHeartDoorBlock extends HeartDoorBlock {
     }
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (player.getHealth() > getHearts(state)) {
+        if (player.getHealth() > getHearts(state) && state.getValue(locked)) {
             decreaseMaxHealth(player, getHearts(state));
             spawnParticles(player, ParticleTypes.HEART, getHearts(state));
             world.setBlockAndUpdate(pos, state.setValue(locked, false));
             return InteractionResult.SUCCESS;
         }
-        else if (player.getHealth() <= getHearts(state)) {
+        else if (player.getHealth() <= getHearts(state) && state.getValue(locked)) {
             player.hurt(playerDestruction, player.getHealth());
             int healthParticles = Math.round(player.getHealth());
             spawnParticles(player, ParticleTypes.HEART, healthParticles);

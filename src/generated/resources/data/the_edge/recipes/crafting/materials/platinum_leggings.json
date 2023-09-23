@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "pkp",
+    "shs",
+    "p p"
+  ],
+  "key": {
+    "p": {
+      "tag": "forge:ingots/platinum"
+    },
+    "h": {
+      "item": "minecraft:netherite_leggings"
+    },
+    "s": {
+      "tag": "forge:plates/platinum"
+    },
+    "k": {
+      "item": "minecraft:dried_kelp"
+    }
+  },
+  "result": {
+    "item": "the_edge:platinum_leggings"
+  }
+}

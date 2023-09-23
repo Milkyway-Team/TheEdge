@@ -1,5 +1,7 @@
 package com.pouffydev.the_edge.foundation.client;
 
+import com.pouffydev.the_edge.content.block.dungeons.completion_monolith.CompletionMonolithBlock;
+import com.pouffydev.the_edge.content.block.dungeons.heart_door.HeartDoorBlock;
 import com.pouffydev.the_edge.content.block.dungeons.heart_door.LockedHeartDoorBlock;
 import com.pouffydev.the_edge.content.block.foliage.BearTrapBlock;
 import com.pouffydev.the_edge.content.block.foliage.DoubleEdgePlantBlock;
@@ -215,16 +217,17 @@ public class TEBlockstateGen {
                     });
         };
     }
+    public static <B extends CompletionMonolithBlock> NonNullBiConsumer<DataGenContext<Block, B>, RegistrateBlockstateProvider> completionMonolith() {
+        return (c, p) -> {
+            p.getVariantBuilder(c.get()).forAllStatesExcept(state -> {
+                        return ConfiguredModel.builder().modelFile(p.models().getExistingFile(p.modLoc("block/" + c.getName() + "_" + state.getValue(CompletionMonolithBlock.half).name().toLowerCase(Locale.ROOT) + "_deactivated_" + state.getValue(CompletionMonolithBlock.deactivated)))).build();
+                    });
+        };
+    }
     public static <B extends DoubleEdgePlantBlock> NonNullBiConsumer<DataGenContext<Block, B>, RegistrateBlockstateProvider> existingDoubleFoliage() {
         return (c, p) -> {
-            p.getVariantBuilder(c.get())
-                    .forAllStatesExcept(state -> {
-                        return ConfiguredModel.builder()
-                                .modelFile(p.models()
-                                        .getExistingFile(p.modLoc("block/" + c.getName().replace("tall_", "") + "/" + state.getValue(DoublePlantBlock.HALF)
-                                                .name()
-                                                .toLowerCase(Locale.ROOT))))
-                                .build();
+            p.getVariantBuilder(c.get()).forAllStatesExcept(state -> {
+                return ConfiguredModel.builder().modelFile(p.models().getExistingFile(p.modLoc("block/" + c.getName().replace("tall_", "") + "/" + state.getValue(DoublePlantBlock.HALF).name().toLowerCase(Locale.ROOT)))).build();
                     });
         };
     }
@@ -273,7 +276,17 @@ public class TEBlockstateGen {
             p.getVariantBuilder(c.get())
                     .forAllStatesExcept(state -> {
                         return ConfiguredModel.builder()
-                                .modelFile(p.models().getExistingFile(p.modLoc("block/heart_door/difficulty/" + state.getValue(LockedHeartDoorBlock.difficulty).getSerializedName() + "/locked_" + state.getValue(LockedHeartDoorBlock.locked))))
+                                .modelFile(p.models().getExistingFile(p.modLoc("block/heart_door/difficulty/" + state.getValue(LockedHeartDoorBlock.difficulty).getSerializedName() + "/locked_" + state.getValue(LockedHeartDoorBlock.locked) + "_vanished_" + state.getValue(LockedHeartDoorBlock.active))))
+                                .build();
+                    });
+        };
+    }
+    public static <B extends HeartDoorBlock> NonNullBiConsumer<DataGenContext<Block, B>, RegistrateBlockstateProvider> heartDoor() {
+        return (c, p) -> {
+            p.getVariantBuilder(c.get())
+                    .forAllStatesExcept(state -> {
+                        return ConfiguredModel.builder()
+                                .modelFile(p.models().getExistingFile(p.modLoc("block/heart_door/active_" + state.getValue(HeartDoorBlock.active))))
                                 .build();
                     });
         };

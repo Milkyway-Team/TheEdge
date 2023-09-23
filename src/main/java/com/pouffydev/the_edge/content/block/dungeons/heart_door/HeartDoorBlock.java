@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -51,15 +52,19 @@ public class HeartDoorBlock extends Block {
     }
     public HeartDoorBlock(Properties p) {
         super(p);
-        this.registerDefaultState(this.stateDefinition.any().setValue(active, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(active, false).setValue(vanished, false));
     }
     
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(active);
+        builder.add(active, vanished);
     }
     private boolean isVanished(BlockState state) {
         return state.hasProperty(vanished) && state.getValue(vanished);
+    }
+    @Override
+    public PushReaction getPistonPushReaction(BlockState pState) {
+        return PushReaction.BLOCK;
     }
     @Override
     @Deprecated

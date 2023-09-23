@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "active=false,difficulty=easy,locked=false,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/easy/locked_false_vanished_false"
+    },
+    "active=true,difficulty=easy,locked=false,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/easy/locked_false_vanished_true"
+    },
+    "active=false,difficulty=normal,locked=false,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/normal/locked_false_vanished_false"
+    },
+    "active=true,difficulty=normal,locked=false,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/normal/locked_false_vanished_true"
+    },
+    "active=false,difficulty=hard,locked=false,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/hard/locked_false_vanished_false"
+    },
+    "active=true,difficulty=hard,locked=false,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/hard/locked_false_vanished_true"
+    },
+    "active=false,difficulty=extreme,locked=false,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/extreme/locked_false_vanished_false"
+    },
+    "active=true,difficulty=extreme,locked=false,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/extreme/locked_false_vanished_true"
+    },
+    "active=false,difficulty=impossible,locked=false,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/impossible/locked_false_vanished_false"
+    },
+    "active=true,difficulty=impossible,locked=false,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/impossible/locked_false_vanished_true"
+    },
+    "active=false,difficulty=easy,locked=true,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/easy/locked_true_vanished_false"
+    },
+    "active=true,difficulty=easy,locked=true,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/easy/locked_true_vanished_true"
+    },
+    "active=false,difficulty=normal,locked=true,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/normal/locked_true_vanished_false"
+    },
+    "active=true,difficulty=normal,locked=true,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/normal/locked_true_vanished_true"
+    },
+    "active=false,difficulty=hard,locked=true,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/hard/locked_true_vanished_false"
+    },
+    "active=true,difficulty=hard,locked=true,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/hard/locked_true_vanished_true"
+    },
+    "active=false,difficulty=extreme,locked=true,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/extreme/locked_true_vanished_false"
+    },
+    "active=true,difficulty=extreme,locked=true,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/extreme/locked_true_vanished_true"
+    },
+    "active=false,difficulty=impossible,locked=true,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/impossible/locked_true_vanished_false"
+    },
+    "active=true,difficulty=impossible,locked=true,vanished=false": {
+      "model": "the_edge:block/heart_door/difficulty/impossible/locked_true_vanished_true"
+    },
+    "active=false,difficulty=easy,locked=false,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/easy/locked_false_vanished_false"
+    },
+    "active=true,difficulty=easy,locked=false,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/easy/locked_false_vanished_true"
+    },
+    "active=false,difficulty=normal,locked=false,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/normal/locked_false_vanished_false"
+    },
+    "active=true,difficulty=normal,locked=false,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/normal/locked_false_vanished_true"
+    },
+    "active=false,difficulty=hard,locked=false,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/hard/locked_false_vanished_false"
+    },
+    "active=true,difficulty=hard,locked=false,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/hard/locked_false_vanished_true"
+    },
+    "active=false,difficulty=extreme,locked=false,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/extreme/locked_false_vanished_false"
+    },
+    "active=true,difficulty=extreme,locked=false,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/extreme/locked_false_vanished_true"
+    },
+    "active=false,difficulty=impossible,locked=false,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/impossible/locked_false_vanished_false"
+    },
+    "active=true,difficulty=impossible,locked=false,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/impossible/locked_false_vanished_true"
+    },
+    "active=false,difficulty=easy,locked=true,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/easy/locked_true_vanished_false"
+    },
+    "active=true,difficulty=easy,locked=true,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/easy/locked_true_vanished_true"
+    },
+    "active=false,difficulty=normal,locked=true,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/normal/locked_true_vanished_false"
+    },
+    "active=true,difficulty=normal,locked=true,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/normal/locked_true_vanished_true"
+    },
+    "active=false,difficulty=hard,locked=true,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/hard/locked_true_vanished_false"
+    },
+    "active=true,difficulty=hard,locked=true,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/hard/locked_true_vanished_true"
+    },
+    "active=false,difficulty=extreme,locked=true,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/extreme/locked_true_vanished_false"
+    },
+    "active=true,difficulty=extreme,locked=true,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/extreme/locked_true_vanished_true"
+    },
+    "active=false,difficulty=impossible,locked=true,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/impossible/locked_true_vanished_false"
+    },
+    "active=true,difficulty=impossible,locked=true,vanished=true": {
+      "model": "the_edge:block/heart_door/difficulty/impossible/locked_true_vanished_true"
+    }
+  }
+}

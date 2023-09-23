@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "triggered=false": {
+      "model": "the_edge:block/chompweed/triggered_false"
+    },
+    "triggered=true": {
+      "model": "the_edge:block/chompweed/triggered_true"
+    }
+  }
+}

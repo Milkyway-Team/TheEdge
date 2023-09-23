@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "deactivated=false,half=upper": {
+      "model": "the_edge:block/completion_monolith_upper_deactivated_false"
+    },
+    "deactivated=true,half=upper": {
+      "model": "the_edge:block/completion_monolith_upper_deactivated_true"
+    },
+    "deactivated=false,half=lower": {
+      "model": "the_edge:block/completion_monolith_lower_deactivated_false"
+    },
+    "deactivated=true,half=lower": {
+      "model": "the_edge:block/completion_monolith_lower_deactivated_true"
+    }
+  }
+}
