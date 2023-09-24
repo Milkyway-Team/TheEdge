@@ -1,6 +1,7 @@
 package com.pouffydev.the_edge;
 
 import com.pouffydev.the_edge.content.block.dungeons.completion_monolith.CompletionMonolithBlock;
+import com.pouffydev.the_edge.content.block.dungeons.completion_monolith.CompletionMonolithItem;
 import com.pouffydev.the_edge.content.block.dungeons.heart_door.HeartDoorBlock;
 import com.pouffydev.the_edge.content.block.dungeons.heart_door.LockedHeartDoorBlock;
 import com.pouffydev.the_edge.content.block.kinetics.gateway.attuner.Attuner;
@@ -392,7 +393,7 @@ public class TEBlocks {
             )
             .blockstate(TEBlockstateGen.completionMonolith())
             .lang("Completion Monolith")
-            .item(DoubleHighBlockItem::new)
+            .item(CompletionMonolithItem::new)
             .build()
             .register();
     

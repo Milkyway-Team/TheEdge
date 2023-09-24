@@ -43,9 +43,10 @@ public class HeartDoorBlock extends Block {
     public static final BooleanProperty vanished = BooleanProperty.create("vanished");
     public static final DamageSource heartOffering = (new DamageSource("the_edge.heart_offering")).bypassArmor().bypassMagic();
     
+    
     public static CTSpriteShiftEntry stateDependentCT() {
         BlockState state = TEBlocks.heartDoor.get().defaultBlockState();
-        if (state.hasProperty(vanished) && state.getValue(vanished))
+        if (state.getValue(vanished))
             return TESpriteShifts.heartDoorVanished;
         else
             return TESpriteShifts.heartDoor;

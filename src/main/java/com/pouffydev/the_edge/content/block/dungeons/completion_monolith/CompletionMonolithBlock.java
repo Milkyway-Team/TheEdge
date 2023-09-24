@@ -5,6 +5,7 @@ import com.pouffydev.the_edge.TEBlocks;
 import com.pouffydev.the_edge.content.block.dungeons.heart_door.DungeonDifficulty;
 import com.pouffydev.the_edge.content.block.dungeons.heart_door.LockedHeartDoorBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -15,8 +16,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -27,16 +31,17 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Random;
 
 public class CompletionMonolithBlock extends Block {
     public static final EnumProperty<DoubleBlockHalf> half = BlockStateProperties.DOUBLE_BLOCK_HALF;
     public static final BooleanProperty deactivated = BooleanProperty.create("deactivated");
-    
+    public static final EnumProperty<DungeonDifficulty> difficulty = EnumProperty.create("difficulty", DungeonDifficulty.class);
     public CompletionMonolithBlock(Properties p) {
         super(p);
-        this.registerDefaultState(this.stateDefinition.any().setValue(deactivated, false).setValue(half, DoubleBlockHalf.LOWER));
+        this.registerDefaultState(this.stateDefinition.any().setValue(deactivated, false).setValue(half, DoubleBlockHalf.LOWER).setValue(difficulty, DungeonDifficulty.EASY));
     }
     private void resetMaxHealth(LivingEntity entity, int amount) {
         AttributeModifier modifier = new AttributeModifier("Completion Reward", +amount, AttributeModifier.Operation.ADDITION);
@@ -53,9 +58,37 @@ public class CompletionMonolithBlock extends Block {
             default -> 0;
         };
     }
+    public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {
+        BlockPos blockpos = pos.below();
+        BlockState blockstate = reader.getBlockState(blockpos);
+        return state.getValue(half) == DoubleBlockHalf.LOWER ? blockstate.isFaceSturdy(reader, blockpos, Direction.UP) : blockstate.is(this);
+    }
+    @Nullable
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockPos blockpos = context.getClickedPos();
+        Level level = context.getLevel();
+        BlockState above = level.getBlockState(blockpos.above());
+        BlockState below = level.getBlockState(blockpos.below());
+        if (blockpos.getY() < level.getMaxBuildHeight() - 1 && level.getBlockState(blockpos.above()).canBeReplaced(context)) {
+            boolean flag = isDeactivated(below) || isDeactivated(above);
+            return this.defaultBlockState().setValue(deactivated, flag).setValue(difficulty, DungeonDifficulty.EASY).setValue(half, DoubleBlockHalf.LOWER);
+        } else {
+            return null;
+        }
+    }
     @Override
     @Deprecated
     public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+        BlockPos above = pos.above();
+        BlockPos below = pos.below();
+        BlockState aboveState = world.getBlockState(above);
+        BlockState belowState = world.getBlockState(below);
+        BlockState thisState = world.getBlockState(pos);
+        if (aboveState.isAir() && thisState.getValue(half) == DoubleBlockHalf.LOWER) {
+            world.setBlockAndUpdate(above, TEBlocks.completionMonolith.get().defaultBlockState().setValue(half, DoubleBlockHalf.UPPER).setValue(deactivated, isDeactivated(state)).setValue(difficulty, state.getValue(difficulty)));
+        } else if (thisState.getValue(half) == DoubleBlockHalf.UPPER && belowState.isAir()) {
+            world.setBlockAndUpdate(below, TEBlocks.completionMonolith.get().defaultBlockState().setValue(half, DoubleBlockHalf.LOWER).setValue(deactivated, isDeactivated(state)).setValue(difficulty, state.getValue(difficulty)));
+        }
     }
     private boolean isDeactivated(BlockState state) {
         return state.hasProperty(deactivated) && state.getValue(deactivated);
@@ -66,7 +99,7 @@ public class CompletionMonolithBlock extends Block {
         if (world.isClientSide) {
             return;
         }
-        if (!isDeactivated(state) && !state.getValue(deactivated) && world.hasNeighborSignal(pos)) {
+        if (!isDeactivated(state)) {
             world.setBlockAndUpdate(pos, TEBlocks.completionMonolith.get().defaultBlockState().setValue(deactivated, true));
         }
     }
@@ -79,7 +112,7 @@ public class CompletionMonolithBlock extends Block {
     }
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(deactivated, half);
+        builder.add(deactivated, half, difficulty);
     }
     public void sparkle(Level worldIn, BlockPos pos) {
         Random random = worldIn.random;
@@ -125,20 +158,18 @@ public class CompletionMonolithBlock extends Block {
     @Override
     @Deprecated
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        int radius = 50; // Change this to your desired radius.
+        int radius = 10; // Change this to your desired radius.
         // Loop through the blocks in the specified radius.
         if (!isDeactivated(state)) {
-            for (int x = -radius; x <= radius; x++) {
-                for (int y = -radius; y <= radius; y++) {
-                    for (int z = -radius; z <= radius; z++) {
+            for (int x = -10; x <= 10; x++) {
+                for (int y = -10; y <= 10; y++) {
+                    for (int z = -10; z <= 10; z++) {
                         BlockPos targetPos = pos.offset(x, y, z);
                         Block targetBlock = world.getBlockState(targetPos).getBlock();
                         
                         if (targetBlock == TEBlocks.lockedHeartDoor.get()) {
-                            DungeonDifficulty difficulty = world.getBlockState(targetPos).getValue(LockedHeartDoorBlock.difficulty);
-                            resetMaxHealth(player, getHearts(difficulty));
                             world.setBlockAndUpdate(targetPos, TEBlocks.heartDoor.getDefaultState());
-                            world.setBlockAndUpdate(pos, TEBlocks.completionMonolith.get().defaultBlockState().setValue(deactivated, true));
+                            
                             
                             return InteractionResult.SUCCESS;
                         }
@@ -146,6 +177,10 @@ public class CompletionMonolithBlock extends Block {
                     }
                 }
             }
+            DungeonDifficulty difficulty = world.getBlockState(pos).getValue(LockedHeartDoorBlock.difficulty);
+            resetMaxHealth(player, getHearts(difficulty));
+            world.setBlockAndUpdate(pos, TEBlocks.completionMonolith.get().defaultBlockState().setValue(deactivated, true));
+            return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
     }

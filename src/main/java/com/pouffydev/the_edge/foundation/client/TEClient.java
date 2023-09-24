@@ -35,8 +35,11 @@ public class TEClient {
         ItemBlockRenderTypes.setRenderLayer(TEBlocks.spinecurl.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(TEBlocks.levivine.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(TEBlocks.frostSpike.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(TEBlocks.chompweed.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(TEBlocks.groundbreakerDrill.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(TEBlocks.attuner.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(TEBlocks.heartDoor.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(TEBlocks.lockedHeartDoor.get(), RenderType.cutout());
     }
     @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ModBusEvents {

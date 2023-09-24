@@ -15,8 +15,10 @@ import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 
 import static com.pouffydev.the_edge.foundation.TETags.forgeItemTag;
 
@@ -53,6 +55,7 @@ public class TEItems {
         return TETags.modItemTag("randomium", "blacklist");
     }
     
+    
     private static ItemEntry<Item> sheet(String material) {return REGISTRATE.item(material + "_sheet", Item::new).properties(p->p.tab(TheEdge.itemGroup)).tag(plates(material)).tag(plates()).register();}
     private static ItemEntry<Item> ingot(String material) {
         return REGISTRATE.item(material + "_ingot", Item::new)
@@ -82,7 +85,6 @@ public class TEItems {
     platinumSheet = sheet("platinum"),
     glacioniteSheet = sheet("glacionite"),
     bismuthSheet = sheet("ancient_bismuth");
-    
     
     
     public static final ItemEntry<SpaceBacktankItem.SpaceBacktankBlockItem> platinumBacktankPlaceable = REGISTRATE

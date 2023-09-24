@@ -1,13 +1,10 @@
 package com.pouffydev.the_edge.foundation.client;
 
-import com.pouffydev.the_edge.TEBlocks;
 import com.pouffydev.the_edge.content.block.dungeons.heart_door.HeartDoorBlock;
 import com.simibubi.create.AllTags;
-import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.foundation.block.connected.CTSpriteShiftEntry;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import net.minecraft.world.level.block.Block;
